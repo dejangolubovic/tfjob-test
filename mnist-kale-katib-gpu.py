@@ -51,7 +51,7 @@ print("Number of filtered test examples:", len(x_test))
 
 model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Conv2D(32, [3, 3], activation='relu', input_shape=(28,28,1)))
-model.add(tf.keras.layers.Conv2D(64, [3, 3], activation='relu', data_format='channels_first'))
+model.add(tf.keras.layers.Conv2D(64, [3, 3], activation='relu'))
 model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2)))
 model.add(tf.keras.layers.Dropout(0.25))
 model.add(tf.keras.layers.Flatten())
