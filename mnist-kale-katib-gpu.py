@@ -12,7 +12,8 @@ import time
 
 
 # In[2]:
-
+print('starting TF_CONFIG:')
+print(os.environ['TF_CONFIG'])
 
 nodes_number = 32
 learning_rate = 0.0001
