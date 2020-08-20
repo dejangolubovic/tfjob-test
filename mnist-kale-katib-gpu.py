@@ -62,8 +62,8 @@ with strategy.scope():
     model.add(tf.keras.layers.Dropout(0.5))
     model.add(tf.keras.layers.Dense(1))
 
-model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(learning_rate), metrics=['accuracy'])
-model.summary()
+    model.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(learning_rate), metrics=['accuracy'])
+    model.summary()
 
 
 # In[19]:
