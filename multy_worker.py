@@ -46,6 +46,7 @@ def model_fn(features, labels, mode):
   logits = model(features, training=False)
 
   if mode == tf.estimator.ModeKeys.PREDICT:
+    print('Predicting')
     predictions = {'logits': logits}
     return tf.estimator.EstimatorSpec(labels=labels, predictions=predictions)
 
@@ -55,6 +56,7 @@ def model_fn(features, labels, mode):
       from_logits=True, reduction=tf.keras.losses.Reduction.NONE)(labels, logits)
   loss = tf.reduce_sum(loss) * (1. / BATCH_SIZE)
   if mode == tf.estimator.ModeKeys.EVAL:
+    print('Evaluating')
     return tf.estimator.EstimatorSpec(mode, loss=loss)
 
   return tf.estimator.EstimatorSpec(
@@ -69,8 +71,11 @@ config = tf.estimator.RunConfig(train_distribute=strategy, eval_distribute=strat
 classifier = tf.estimator.Estimator(
     model_fn=model_fn, model_dir='/tmp/multiworker', config=config)
 
+print('Starting the Job')
 tf.estimator.train_and_evaluate(
     classifier,
     train_spec=tf.estimator.TrainSpec(input_fn=input_fn),
     eval_spec=tf.estimator.EvalSpec(input_fn=input_fn)
 )
+print('Job Completed')
+print(os.listdir('/tmp/multiworker'))
