@@ -24,8 +24,27 @@ def input_fn(mode, input_context=None):
                                         input_context.input_pipeline_id)
   return mnist_dataset.map(scale).cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 
+TFCONF = json.dumps({
+    'cluster': {
+        'worker': ["localhost:12345", "localhost:23456"]
+    },
+    'task': {'type': 'worker', 'index': 0}
+})
+TFCONF_dict = json.loads(test)
+print(TFCONF_dict['task'])
+
 LEARNING_RATE = 1e-4
+
 def model_fn(features, labels, mode):
+  if os.environ.get('TF_CONFIG') is not None:
+      print('TF_CONFIG:', os.environ['TF_CONFIG'])
+      TFCONF_dict = json.loads(os.environ['TF_CONFIG'])
+      print('task:', TFCONF_dict['task'])
+  else:
+      print("No TFCONFIG")
+    
+  print('mode =', mode)
+    
   model = tf.keras.Sequential([
       tf.keras.layers.Conv2D(32, 3, activation='relu', input_shape=(28, 28, 1)),
       tf.keras.layers.MaxPooling2D(),
@@ -54,15 +73,13 @@ def model_fn(features, labels, mode):
           loss, tf.compat.v1.train.get_or_create_global_step()))
 
 strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
-
 config = tf.estimator.RunConfig(train_distribute=strategy)
 
 classifier = tf.estimator.Estimator(
     model_fn=model_fn, model_dir='/tmp/multiworker', config=config)
+
 tf.estimator.train_and_evaluate(
     classifier,
     train_spec=tf.estimator.TrainSpec(input_fn=input_fn),
     eval_spec=tf.estimator.EvalSpec(input_fn=input_fn)
 )
-
-print('Job Completed')
