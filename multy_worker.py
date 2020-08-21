@@ -24,15 +24,6 @@ def input_fn(mode, input_context=None):
                                         input_context.input_pipeline_id)
   return mnist_dataset.map(scale).cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE)
 
-TFCONF = json.dumps({
-    'cluster': {
-        'worker': ["localhost:12345", "localhost:23456"]
-    },
-    'task': {'type': 'worker', 'index': 0}
-})
-TFCONF_dict = json.loads(test)
-print(TFCONF_dict['task'])
-
 LEARNING_RATE = 1e-4
 
 def model_fn(features, labels, mode):
