@@ -51,7 +51,7 @@ def model_fn(features, labels, mode):
       mode=mode,
       loss=loss,
       train_op=optimizer.minimize(
-          loss, tf.compat.v1.train.get_or_create_global_step())
+          loss, tf.compat.v1.train.get_or_create_global_step()))
 
 strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
 
