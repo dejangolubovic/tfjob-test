@@ -65,7 +65,7 @@ def model_fn(features, labels, mode):
       train_op=optimizer.minimize(
           loss, tf.compat.v1.train.get_or_create_global_step()))
 
-strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
+strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(tf.distribute.experimental.CollectiveCommunication.NCCL)
 config = tf.estimator.RunConfig(train_distribute=strategy, eval_distribute=strategy)
 
 classifier = tf.estimator.Estimator(
