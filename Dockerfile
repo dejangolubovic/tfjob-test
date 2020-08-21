@@ -6,6 +6,6 @@ RUN pip3 install tensorflow_datasets
 COPY mnist-kale-katib-gpu.py /
 COPY multy_worker.py /
 
-USER jovyan
+#USER jovyan
 
 #ENTRYPOINT ["python3", "/mnist-kale-katib-gpu.py"]
