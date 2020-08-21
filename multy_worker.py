@@ -64,7 +64,7 @@ def model_fn(features, labels, mode):
           loss, tf.compat.v1.train.get_or_create_global_step()))
 
 strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy()
-config = tf.estimator.RunConfig(train_distribute=strategy)
+config = tf.estimator.RunConfig(train_distribute=strategy, eval_distribute=strategy)
 
 classifier = tf.estimator.Estimator(
     model_fn=model_fn, model_dir='/tmp/multiworker', config=config)
