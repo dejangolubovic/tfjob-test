@@ -72,13 +72,10 @@ classifier = tf.estimator.Estimator(
     model_fn=model_fn, model_dir='/tmp/multiworker', config=config)
 
 print('Starting the Job')
-epochs = 100
-for i in range(epochs):
-    print('epoch:', i)
-    tf.estimator.train_and_evaluate(
-        classifier,
-        train_spec=tf.estimator.TrainSpec(input_fn=input_fn),
-        eval_spec=tf.estimator.EvalSpec(input_fn=input_fn)
-    )
+tf.estimator.train_and_evaluate(
+    classifier,
+    train_spec=tf.estimator.TrainSpec(input_fn=input_fn),
+    eval_spec=tf.estimator.EvalSpec(input_fn=input_fn)
+)
 print('Job Completed')
 print(os.listdir('/tmp/multiworker'))
