@@ -5,6 +5,7 @@ RUN pip3 install tensorflow_datasets
 
 COPY mnist-kale-katib-gpu.py /
 COPY multy_worker.py /
+COPY keras-estimator.py /
 
 #USER jovyan
 
