@@ -30,8 +30,10 @@ def input_fn():
 
 model_dir = tempfile.mkdtemp()
 keras_estimator = tf.keras.estimator.model_to_estimator(keras_model=model, model_dir=model_dir)
-print('Training...')
-keras_estimator.train(input_fn=input_fn, steps=100000)
-print('Evaluating...')
-eval_result = keras_estimator.evaluate(input_fn=input_fn, steps=100)
-print('Eval result: {}'.format(eval_result))
+
+with strategy.scope():
+    print('Training...')
+    keras_estimator.train(input_fn=input_fn, steps=100000)
+    print('Evaluating...')
+    eval_result = keras_estimator.evaluate(input_fn=input_fn, steps=100)
+    print('Eval result: {}'.format(eval_result))
