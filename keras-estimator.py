@@ -9,8 +9,11 @@ strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(tf.distribute.
 config = tf.estimator.RunConfig(train_distribute=strategy, eval_distribute=strategy)
 
 model = tf.keras.models.Sequential([
-    tf.keras.layers.Dense(2048, activation='relu', input_shape=(4,)),
-    tf.keras.layers.Dense(1024),
+    tf.keras.layers.Dense(16384, activation='relu', input_shape=(4,)),
+    tf.keras.layers.Dense(16384),
+    tf.keras.layers.Dense(8192),
+    tf.keras.layers.Dense(4096),
+    tf.keras.layers.Dense(2048),
     tf.keras.layers.Dense(1024),
     tf.keras.layers.Dense(512),
     tf.keras.layers.Dense(256),
