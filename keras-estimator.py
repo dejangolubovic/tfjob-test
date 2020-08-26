@@ -9,8 +9,7 @@ strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(tf.distribute.
 config = tf.estimator.RunConfig(train_distribute=strategy, eval_distribute=strategy)
 
 model = tf.keras.models.Sequential([
-    tf.keras.layers.Dense(32768, activation='relu', input_shape=(4,)),
-    tf.keras.layers.Dense(32768),
+    tf.keras.layers.Dense(16384, activation='relu', input_shape=(4,)),
     tf.keras.layers.Dense(16384),
     tf.keras.layers.Dense(8192),
     tf.keras.layers.Dense(4096),
@@ -37,7 +36,8 @@ keras_estimator = tf.keras.estimator.model_to_estimator(keras_model=model, model
 
 with strategy.scope():
     print('Training...')
-    keras_estimator.train(input_fn=input_fn, steps=10000)
+    keras_estimator.train(input_fn=input_fn, steps=100000)
     print('Evaluating...')
     eval_result = keras_estimator.evaluate(input_fn=input_fn, steps=100)
     print('Eval result: {}'.format(eval_result))
+© 2020 GitHub, Inc.
