@@ -1,7 +1,7 @@
 apiVersion: "kubeflow.org/v1"
 kind: "TFJob"
 metadata:
-  name: "tfjob-custom"
+  name: "dgolubov-jobcustom"
 spec:
   tfReplicaSpecs:
     Chief:
@@ -36,6 +36,24 @@ spec:
             command:
               - "python"
               - "/multy_worker.py"
+            image: registry.hub.docker.com/dejangolubovic/tfjob-test
+            name: tensorflow
+            ports:
+            - containerPort: 2222
+              name: tfjob-port
+            resources:
+              limits:
+                nvidia.com/gpu: 1
+            workingDir: /
+          restartPolicy: OnFailure
+    PS:
+      replicas: 1
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - args:
             image: registry.hub.docker.com/dejangolubovic/tfjob-test
             name: tensorflow
             ports:
