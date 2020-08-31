@@ -1,26 +1,25 @@
 import tensorflow as tf
 import random
 import numpy as np
-import tensorflow_datasets as tfds
 import tempfile
 import os, json
+import tensorflow_datasets as tfds
 
-strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(tf.distribute.experimental.CollectiveCommunication.NCCL)
+strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(\
+           tf.distribute.experimental.CollectiveCommunication.NCCL)
 
 with strategy.scope():
     config = tf.estimator.RunConfig(train_distribute=strategy, eval_distribute=strategy)
 
     model = tf.keras.models.Sequential([
-        tf.keras.layers.Dense(4096, activation='relu', input_shape=(4,)),
-        tf.keras.layers.Dense(2048),
+        tf.keras.layers.Dense(2048, activation='relu', input_shape=(4,)),
         tf.keras.layers.Dense(1024),
         tf.keras.layers.Dense(512),
         tf.keras.layers.Dense(256),
         tf.keras.layers.Dropout(0.2),
         tf.keras.layers.Dense(3)
     ])
-    model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-                  optimizer='adam')
+    model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), optimizer='adam')
     #model.summary()
 
     def input_fn():
@@ -30,11 +29,13 @@ with strategy.scope():
         dataset = dataset.batch(32).repeat()
         return dataset
 
-    model_dir = tempfile.mkdtemp()
+    os.system('mkdir /tmp/model_outputs')
+    model_dir = '/tmp/model_outputs'
     keras_estimator = tf.keras.estimator.model_to_estimator(keras_model=model, model_dir=model_dir)
 
     print('Training...')
-    keras_estimator.train(input_fn=input_fn, steps=100000)
+    train_result = keras_estimator.train(input_fn=input_fn, steps=100)
+    print('Train result: {}'.format(train_result))
     print('Evaluating...')
     eval_result = keras_estimator.evaluate(input_fn=input_fn, steps=100)
     print('Eval result: {}'.format(eval_result))
