@@ -47,7 +47,7 @@ spec:
                       imagePullPolicy: Always
                       command:
                         - "python"
-                        - "/keras_estimator.py"
+                        - "/keras-estimator.py"
                         {{- with .HyperParameters}}
                         {{- range .}}
                         - "{{.Name}}={{.Value}}"
