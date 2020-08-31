@@ -4,13 +4,20 @@ import numpy as np
 import tempfile
 import os, json
 import tensorflow_datasets as tfds
+import argparse
 
 strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(\
            tf.distribute.experimental.CollectiveCommunication.NCCL)
 
 with strategy.scope():
     config = tf.estimator.RunConfig(train_distribute=strategy, eval_distribute=strategy)
-
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--learning_rate', type=float, default=0.001, help='Initial learning rate')
+    FLAGS, unparsed = parser.parse_known_args()
+    print('FLAGS:')
+    print(FLAGS)
+    
     model = tf.keras.models.Sequential([
         tf.keras.layers.Dense(2048, activation='relu', input_shape=(4,)),
         tf.keras.layers.Dense(1024),
@@ -19,7 +26,8 @@ with strategy.scope():
         tf.keras.layers.Dropout(0.2),
         tf.keras.layers.Dense(3)
     ])
-    model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), optimizer='adam')
+    model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), \
+                  optimizer=tf.keras.optimizers.Adam(FLAGS.learning_rate))
     #model.summary()
 
     def input_fn():
