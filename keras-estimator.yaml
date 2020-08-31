@@ -16,7 +16,7 @@ spec:
   metricsCollectorSpec:
     source:
       fileSystemPath:
-        path: /model_outputs/eval
+        path: /tmp/model_outputs/eval
         kind: Directory
     collector:
       kind: TensorFlowEvent
