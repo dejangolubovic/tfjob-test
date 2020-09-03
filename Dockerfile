@@ -7,6 +7,7 @@ COPY mnist-kale-katib-gpu.py /
 COPY multy_worker.py /
 COPY keras-estimator.py /
 
+WORKDIR /home/jovyan
 #USER jovyan
 
 #ENTRYPOINT ["python3", "/mnist-kale-katib-gpu.py"]
