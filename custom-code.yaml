@@ -44,6 +44,13 @@ spec:
                   containers:
                     - name: tensorflow 
                       image: registry.hub.docker.com/dejangolubovic/tfjob-test:custom
+                      volumes: 
+                        - name: pvc-34814286-04e4-4d2a-943c-37002c802ee0
+                          persistentVolumeClaim:
+                            claimName: workspace-eostest
+                      volumeMounts:
+                        - mountPath: /eos
+                          name: pvc-34814286-04e4-4d2a-943c-37002c802ee0
                       imagePullPolicy: Always
                       command:
                         - "python"
