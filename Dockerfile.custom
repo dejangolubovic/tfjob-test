@@ -29,4 +29,4 @@ COPY custom-code.py /
 
 RUN echo "jovyan ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/jovyan
 WORKDIR /home/jovyan
-USER jovyan
+# USER jovyan
