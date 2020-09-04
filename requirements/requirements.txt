@@ -1,1 +1,1 @@
-tensorflow-datasets
+tensorflow_datasets
