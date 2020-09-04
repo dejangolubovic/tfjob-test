@@ -6,6 +6,9 @@ import os, json
 import tensorflow_datasets as tfds
 import argparse
 import sys
+import time
+
+time.sleep(60)
 
 strategy = tf.distribute.experimental.MultiWorkerMirroredStrategy(tf.distribute.experimental.CollectiveCommunication.NCCL)
 
