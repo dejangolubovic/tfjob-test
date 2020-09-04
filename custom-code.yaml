@@ -1,8 +1,8 @@
 apiVersion: "kubeflow.org/v1alpha3"
 kind: Experiment
 metadata:
-  namespace: ***
-  name: ***
+  namespace: dejan-golubovic
+  name: custom-test-eos
 spec:
   parallelTrialCount: 1
   maxTrialCount: 3
