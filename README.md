@@ -15,7 +15,9 @@ It requires some additional work, but can be useful for now.
 7) `docker push username/katib-job`
 
 ### Anywhere
-8) Edit `custom-code.yaml` to add hyperparameters and algorithm options
+8) Edit `custom-code.yaml`
+  - Add hyperparameters and algorithm options
+  - Set your docker image `image: registry.hub.docker.com/username/katib-job`
 
 ### On ml.cern.ch
 9) Go to https://ml.cern.ch/katib/#/katib/hp, and copy paste content of your `custom-code.yaml`
