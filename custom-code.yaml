@@ -43,7 +43,7 @@ spec:
                 spec:
                   containers:
                     - name: tensorflow 
-                      image: registry.hub.docker.com/dejangolubovic/tfjob-test
+                      image: registry.hub.docker.com/dejangolubovic/tfjob-test:custom
                       imagePullPolicy: Always
                       command:
                         - "python"
