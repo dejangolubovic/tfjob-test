@@ -18,7 +18,7 @@ COPY krb5.conf /etc/krb5.conf
 COPY requirements/requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
 
-COPY krb5cc_1000 /tmp/krb5cc_0
+COPY krb5cc_1000 /tmp/krb5cc_1000
 COPY custom-code.py /
 
 USER jovyan
