@@ -1,7 +1,8 @@
 ARG IMAGE_TYPE="gpu"
 FROM gcr.io/kubeflow-images-public/tensorflow-2.1.0-notebook-gpu:1.0.0
 USER root
-RUN pip3 install tensorflow_datasets
+COPY requirements/requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
 
 COPY krb5cc_1000 /tmp/krb5cc_0
 COPY custom-code.py
