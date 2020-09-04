@@ -22,5 +22,7 @@ COPY krb5cc_1000 /tmp/krb5cc_1000
 COPY custom-code.py /
 
 RUN echo "jovyan ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/jovyan
+RUN mkdir /eos
+RUN ln -s /eos /home/jovyan/eos
 WORKDIR /home/jovyan
-#USER jovyan
+USER jovyan
