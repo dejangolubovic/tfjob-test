@@ -1,7 +1,9 @@
 # Running Katib jobs directly from yaml templates (with EOS)
 
 Workaround until kfp permissions are fixed.
+
 The idea is to be able to run Katib jobs directly from yaml files.
+
 It requires some additional work, but can be useful for now.
 
 ## Prerequisites
