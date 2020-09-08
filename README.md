@@ -44,3 +44,6 @@ Host docker-temp
 ### On ml.cern.ch
 9) Go to https://ml.cern.ch/katib/#/katib/hp, and copy paste content of your `custom-code.yaml`
 10) Click `Deploy` and hope for the best :)
+
+### IMPORTANT: Once finished with Docker VM machine
+Do `docker logout` as your credentials are not encrypted there.
