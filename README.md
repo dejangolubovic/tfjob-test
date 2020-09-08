@@ -16,7 +16,8 @@ It requires some additional work, but can be useful for now.
 1) Login to lxplus
 2) `nano ~/.ssh/dockervmkey.pem`
 - Copy content of the private key (which I will you send via Mattermost)
-3) `nano ~/.ssh/config`, add the following lines:
+3) `chmod 400 ~/.ssh/dockervmkey.pem`
+4) `nano ~/.ssh/config`, add the following lines:
 ```
 Host docker-temp
     User root
