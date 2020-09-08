@@ -33,7 +33,7 @@ Host docker-temp
 3) `git checkout staging`
 4) Copy kerberos credentials file from local to the current directory: `cp @YOUR_LOCAL_PATH/krb5cc_1000 .`
 5) Copy your code to `custom-code.py`
-6) `docker build -f Dockerfile.custom -t @username/katib-job .`
+6) `docker build -f Dockerfile.custom -t @username/katib-job . --network=host`
 7) `docker push @username/katib-job`
 
 ### Anywhere
