@@ -8,9 +8,20 @@ It requires some additional work, but can be useful for now.
 
 ## Prerequisites
 
+### If using local machine
 1) Install Docker. To run this example, a machine with installed Docker is needed. Docker can't be installed on ml.cern.ch, nor on lxplus. An option to install can be a local PC or a laptop. To install docker: https://docs.docker.com/get-docker/
 2) Make a Docker account: https://docs.docker.com/docker-id/
 3) Login to Docker from the machine where it's installed: `docker login @username`
+
+### If using Docker VM
+1) Login to lxplus
+2) `nano ~/.ssh/dockervmkey.pem`
+3) Copy content of the private key (which I will yoy send via Mattermost)
+4) Edit `~/.ssh/config file`, add following lines:
+`Host docker-temp
+    User root
+    IdentityFile ~/.ssh/dockervmkey.pem`
+5) `ssh docker-temp`
 
 ## Katib job setup
 
