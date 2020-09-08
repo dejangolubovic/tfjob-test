@@ -29,8 +29,8 @@ Host docker-temp
 
 ### On a local machine, where Docker daemon is installed
 1) `git clone https://github.com/dejangolubovic/tfjob-test.git`
-2) `git checkout staging`
-3) `cd tf-job-test`
+2) `cd tf-job-test`
+3) `git checkout staging`
 4) Copy kerberos credentials file from local to the current directory: `cp @YOUR_LOCAL_PATH/krb5cc_1000 .`
 5) Copy your code to `custom-code.py`
 6) `docker build -f Dockerfile.custom -t @username/katib-job .`
