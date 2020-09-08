@@ -16,11 +16,13 @@ It requires some additional work, but can be useful for now.
 ### If using Docker VM
 1) Login to lxplus
 2) `nano ~/.ssh/dockervmkey.pem`
-3) Copy content of the private key (which I will yoy send via Mattermost)
+3) Copy content of the private key (which I will you send via Mattermost)
 4) Edit `~/.ssh/config file`, add following lines:
-`Host docker-temp
+```
+Host docker-temp
     User root
-    IdentityFile ~/.ssh/dockervmkey.pem`
+    IdentityFile ~/.ssh/dockervmkey.pem
+```
 5) `ssh docker-temp`
 
 ## Katib job setup
