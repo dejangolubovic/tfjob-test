@@ -8,15 +8,15 @@ It requires some additional work, but can be useful for now.
 
 ## Prerequisites
 
-### If using local machine
+### If using a local machine
 1) Install Docker. To run this example, a machine with installed Docker is needed. Docker can't be installed on ml.cern.ch, nor on lxplus. An option to install can be a local PC or a laptop. To install docker: https://docs.docker.com/get-docker/
 2) Make a Docker account: https://docs.docker.com/docker-id/
 
 ### If using Docker VM
 1) Login to lxplus
 2) `nano ~/.ssh/dockervmkey.pem`
-3) Copy content of the private key (which I will you send via Mattermost)
-4) Edit `~/.ssh/config file`, add following lines:
+- Copy content of the private key (which I will you send via Mattermost)
+3) `nano ~/.ssh/config file`, add the following lines:
 ```
 Host docker-temp
     User root
@@ -27,7 +27,7 @@ Host docker-temp
 ## Katib job setup
 
 ### On a local machine, where Docker daemon is installed
-0) Login to Docker: `docker login @username`
+0) Login to Docker: `docker login` + enter Docker ID and password
 1) `git clone https://github.com/dejangolubovic/tfjob-test.git`
 2) `cd tfjob-test`
 3) `git checkout staging`
