@@ -26,7 +26,7 @@ Host docker-temp
 
 ## Katib job setup
 
-### On a local machine, where Docker daemon is installed
+### On a local machine or Docker VM, where Docker daemon is installed
 0) Login to Docker: `docker login` + enter Docker ID and password
 1) `git clone https://github.com/dejangolubovic/tfjob-test.git`
 2) `cd tfjob-test`
