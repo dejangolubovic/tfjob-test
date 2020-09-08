@@ -11,7 +11,6 @@ It requires some additional work, but can be useful for now.
 ### If using local machine
 1) Install Docker. To run this example, a machine with installed Docker is needed. Docker can't be installed on ml.cern.ch, nor on lxplus. An option to install can be a local PC or a laptop. To install docker: https://docs.docker.com/get-docker/
 2) Make a Docker account: https://docs.docker.com/docker-id/
-3) Login to Docker from the machine where it's installed: `docker login @username`
 
 ### If using Docker VM
 1) Login to lxplus
@@ -28,6 +27,7 @@ Host docker-temp
 ## Katib job setup
 
 ### On a local machine, where Docker daemon is installed
+0) Login to Docker: `docker login @username`
 1) `git clone https://github.com/dejangolubovic/tfjob-test.git`
 2) `cd tfjob-test`
 3) `git checkout staging`
